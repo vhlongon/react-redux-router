@@ -1,6 +1,6 @@
-# React Redux boilerplate
+# React Redux Routing
 
-Boilerplate for rapid React prototyping using webpack with SASS/CSS Modules, Hot reloading and BrowserSync plugin.
+Project using React-redux and herokuapp routing. Docs at: http://reduxblog.herokuapp.com
 
 Uses babel for ES6 transpiling
 
