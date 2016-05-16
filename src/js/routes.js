@@ -3,8 +3,14 @@ import {Route, IndexRoute} from 'react-router';
 
 import App from './components/app';
 
-// yoururl.com/ -> renders the App component
+
+// for the purporse of testing just create a dummy component here
+const Greeting = () => {
+  return <div>Yo, mista!</div>;
+};
 
 export default (
-  <Route path="/" component={App} />
+  <Route path="/" component={App}>
+    <Route path="greet" component={Greeting} />
+  </Route>
 );

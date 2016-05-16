@@ -13,7 +13,8 @@ module.exports = {
     inline: true,
     hot: true,
     port: 4242,
-    open: true
+    open: true,
+    historyApiFallback: true
   },
   // resolve: {
   //   extensions: ['', '.js']
