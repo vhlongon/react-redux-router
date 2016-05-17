@@ -5,16 +5,17 @@ import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    path: './dist/js',
-    filename: 'bundle.js',
-    publicPath: '/'
+    path: __dirname,
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   devServer: {
-    inline: true,
+    // inline: true,
     hot: true,
     port: 4242,
-    open: true,
-    historyApiFallback: true
+    // open: true,
+    historyApiFallback: true,
+    contentBase: './'
   },
   // resolve: {
   //   extensions: ['', '.js']
@@ -24,8 +25,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new BrowserSyncPlugin({
-      // browse to http://localhost:3434/ during development,
-      // ./public directory is being served
       host: 'localhost',
       port: 4240,
       proxy: 'http://localhost:4242/',

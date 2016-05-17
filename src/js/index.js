@@ -10,7 +10,7 @@ import { createStore, applyMiddleware } from 'redux';
 // import App from './components/app';
 
 //use routher instead of importing the App
-import{Router, hashHistory} from 'react-router';
+import{Router, browserHistory} from 'react-router';
 
 //import the file we create defining all the different routes:
 // which component to render depending on the url typed on the browser
@@ -29,7 +29,7 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 // Renader the app by wrapping the component in a provider
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={hashHistory} routes={routes} />
+    <Router history={browserHistory} routes={routes} />
   </Provider>,
   document.querySelector('.react-root')
 );
