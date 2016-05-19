@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 // import {bindActionCreators} from 'redux';
 import {fetchPosts} from '../actions/index';
 
+// import the Link component so we can use it to navigate from on route to another with the router
+import {Link} from 'react-router';
+
 class PostIndex extends Component {
 
   constructor(props) {
@@ -16,7 +19,13 @@ class PostIndex extends Component {
 
   render = () => {
     return (
-      <div>List of blog posts.</div>
+      <div>
+        <div className="top-bar text-right">
+          <Link to="/posts/new" className="button">Add a post</Link>
+
+        </div>
+        List of blog posts.
+      </div>
     );
   }
 }
