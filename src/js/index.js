@@ -19,12 +19,15 @@ import routes from './routes';
 //import the reducers
 import reducers from './reducers';
 
+//import redux-promise to use as middleware
+import promise from 'redux-promise';
+
 //import your styles
 import css from '../scss/styles.scss';
 
 //create middleware
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 // Renader the app by wrapping the component in a provider
 ReactDOM.render(
