@@ -34,7 +34,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js?$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel',
         exclude: /node_modules/
         // include: path.join(__dirname, 'scripts'),
