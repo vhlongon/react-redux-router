@@ -1,9 +1,16 @@
-export function selectItem(item) {
-    // clickItem is an ActionCreator, it needs to return an action.
-    // which is an obect containing a type that describes the purpose of the action
-    // and maybe data or payload that describes the action
+import axios from 'axios';
+
+export const FETCH_POSTS = 'FETCH_POSTS';
+
+const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
+// just for the sake of testing, we don't need to register anything, as long as
+// we use a unique string
+const API_KEY = 'vhlongon';
+
+export function fetchPosts() {
+    const request = axios.get(`${ROOT_URL}/posts?key=${API_KEY}`);
     return {
-        type: 'ITEM_SELECTED',
-        payload: item
+        type: FETCH_POSTS,
+        payload: request
     };
 }
