@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
 import {Link} from 'react-router';
 
@@ -11,8 +10,22 @@ class PostsNew extends Component {
   constructor(props) {
     super(props);
   }
-  componentWillMount = () => {
 
+  // Only use context when working whe router, we use it here to create a referenc to the router
+  // on our component
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  onSubmit = (props) => {
+    // because we are using redux-promise the call for your 'createPost' action creator returns a promise,
+    //thus .then(()=>{})
+    this.props.createPost(props)
+      .then(() => {
+        //blog post has been created, navigate the user to the index
+        // we navigate by calling this.context.router.push with the new path to navigate to
+        this.context.router.push('/');
+      });
   }
 
   render = () => {
@@ -31,9 +44,10 @@ class PostsNew extends Component {
     //with handleSubmit(this.props.createPost) we give the responsibility for submiting the form to redux-form
     //by passing the action creator createPost, this action creator is available from this.props
 
-    //console.log(this.props);
+    //UPDATE - we extract param to handleSubmit to a method on the component class called 'onSubmit'
+
     return (
-      <form onSubmit={handleSubmit(this.props.createPost)}>
+      <form onSubmit={handleSubmit(this.onSubmit)}>
         <h3>Create a new post</h3>
         <div>
           <label htmlFor="title">Title</label>
