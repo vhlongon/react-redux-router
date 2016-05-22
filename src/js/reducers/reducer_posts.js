@@ -1,4 +1,4 @@
-import {FETCH_POSTS} from '../actions/index';
+import {FETCH_POSTS, FETCH_POST} from '../actions/index';
 
 // define the initial state for our reducer
 const INITIAL_STATE = {
@@ -10,9 +10,12 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action){
   switch (action.type) {
+    case FETCH_POST:
+      return{...state, post: action.payload.data };
+      break;
     case FETCH_POSTS:
-        // since we need the state in another format we create a new structure using spread operator
-        return {...state, all: action.payload.data };
+      // since we need the state in another format we create a new structure using spread operator
+      return {...state, all: action.payload.data };
       break;
     default:
       return state;
