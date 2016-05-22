@@ -20,10 +20,12 @@ class PostIndex extends Component {
   renderPosts = () => {
     return this.props.posts.map((post) => {
       return (
-        <li className="list-group-item" key={post.id}>
-        <strong className="list-group-item__title text-right">{post.title}</strong>
-        <span className="list-group-item__category text-left"> {post.categories}</span>
-        </li>
+        <Link to={`/posts/${post.id}`} key={post.id}>
+          <li className="list-group-item">
+          <strong className="list-group-item__title text-right">{post.title}</strong>
+          <span className="list-group-item__category text-left"> {post.categories}</span>
+          </li>
+        </Link>
       );
     });
   }
@@ -60,5 +62,8 @@ class PostIndex extends Component {
 function MapStateToProps(state) {
   return { posts: state.posts.all };
 }
+
+//UPDATE no more export default connect(null, {fetchPosts})(PostIndex),
+// since now we have indded a piece of redux state to map to your component props, thus:
 
 export default connect(MapStateToProps, {fetchPosts})(PostIndex);
