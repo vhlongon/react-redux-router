@@ -11,8 +11,8 @@ class PostsNew extends Component {
     super(props);
   }
 
-  // Only use context when working whe router, we use it here to create a referenc to the router
-  // on our component
+  // Only use context when working whe router,
+  // we use it here to create a reference to the router (from the parent component) on our component
   static contextTypes = {
     router: PropTypes.object
   };

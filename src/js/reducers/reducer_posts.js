@@ -11,7 +11,6 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action){
   switch (action.type) {
     case FETCH_POSTS:
-        console.debug(action);
         // since we need the state in another format we create a new structure using spread operator
         return {...state, all: action.payload.data };
       break;

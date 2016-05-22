@@ -17,6 +17,16 @@ class PostIndex extends Component {
     this.props.fetchPosts();
   }
 
+  renderPosts = () => {
+    return this.props.posts.map((post) => {
+      return (
+        <li className="list-group-item" key={post.id}>
+        <strong className="list-group-item__title text-right">{post.title}</strong>
+        <span className="list-group-item__category text-left"> {post.categories}</span>
+        </li>
+      );
+    });
+  }
   render = () => {
     return (
       <div>
@@ -24,7 +34,10 @@ class PostIndex extends Component {
           <Link to="/posts/new" className="button">Add a post</Link>
 
         </div>
-        List of blog posts.
+        <h3>Posts</h3>
+        <ul className="list-group">
+          {this.renderPosts()}
+        </ul>
       </div>
     );
   }
@@ -44,4 +57,8 @@ class PostIndex extends Component {
 
 // or instead we can use destructuring with ES6 to shorten even more like so:
 
-export default connect(null, {fetchPosts})(PostIndex);
+function MapStateToProps(state) {
+  return { posts: state.posts.all };
+}
+
+export default connect(MapStateToProps, {fetchPosts})(PostIndex);
