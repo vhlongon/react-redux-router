@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
+import {Link} from 'react-router';
 
 //import the action creator to pass to handleSubmit helper from redux-form
 import {createPost} from '../actions/index';
@@ -68,7 +69,8 @@ class PostsNew extends Component {
           </p>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Save</button>
+        <Link to="/" className="alert button">Cancel</Link>
       </form>
     );
   }

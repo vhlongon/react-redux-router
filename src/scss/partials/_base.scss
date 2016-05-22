@@ -6,6 +6,11 @@
   justify-content: center;
 }
 
+.button,
+button {
+  margin-right: 1rem;
+}
+
 // add some color feedback with the field is not valid
 input,
 textarea {
