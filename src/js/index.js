@@ -19,6 +19,7 @@ import routes from './routes';
 //import the reducers
 import reducers from './reducers';
 
+
 //import redux-promise to use as middleware
 import promise from 'redux-promise';
 

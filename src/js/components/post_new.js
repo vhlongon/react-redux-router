@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {reduxForm} from 'redux-form';
+
+//import the action creator to pass to handleSubmit helper from redux-form
+import {createPost} from '../actions/index';
 
 class PostsNew extends Component {
 
@@ -11,11 +15,64 @@ class PostsNew extends Component {
   }
 
   render = () => {
+    // redux-form injects several different helpers as can check by logging this.props
+    // here we pull the one to handle the form submition
+    // and the one the fields object containing the field we mapped to the bottom when connecting the form to redux
+    //the below is equivalent to const handleSubmit = this.props.handleSubmit and
+    // this.props.fields.title, this.props.fields.categories and this.props.fields.content
+    // but we use ES6 destructuring to condense everything into one line
+    const { fields: { title, categories, content }, handleSubmit } = this.props;
+
+    // we pass all the fields helpers to each field again using ES6 destructuring, thus:
+    // {...title}, {...categories} and {...content} on the respective field
+    // we delegate responsibility for the inputs as well as the submit button totally to redux-form
+
+    //with handleSubmit(this.props.createPost) we give the responsibility for submiting the form to redux-form
+    //by passing the action creator createPost, this action creator is available from this.props
+
     return (
-      <div>Create Form</div>
+      <form onSubmit={handleSubmit(this.props.createPost)}>
+        <h3>Create a new post</h3>
+        <div>
+          <label htmlFor="title">Title</label>
+          <input type="text" name="title" className="form-control" {...title} />
+        </div>
+
+        <div>
+          <label htmlFor="categories">Categories</label>
+          <input type="text" name="categories" className="form-control" {...categories} />
+        </div>
+
+        <div>
+          <label htmlFor="content">Content</label>
+          <textarea name="content" className="form-control" {...content} />
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
     );
   }
 }
 
+//connect: 1st argment is mapStateToProps, 2nd is mapDispatchToProps
+// reduxForm: 1st argument is form config, 2nd is mapStateToProps and 3rd is mapDispatchToProps
 
-export default PostsNew;
+//what the means is that we can use redux-form to connect to redux an create a container component
+
+// here we tell redux-form about the configuration of our form, i.e.
+// which fields it contains and what they are called and wire it to redux:
+export default reduxForm({
+  form: 'PostsNewForm',
+  fields: ['title', 'categories', 'content']
+}, null, {createPost})(PostsNew);
+
+// when user types something in...record it on application state like so:
+// state === {
+//   form: {
+//     PostsNewForm: { // or whatever given name for the form (as above)
+//       title: '...',  //whatever the user has typed
+//       categories: '...', //whatever the user has typed
+//       content: '...' //whatever the user has typed
+//     }
+//   }
+// }
