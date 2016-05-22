@@ -6,6 +6,8 @@ export const CREATE_POST = 'CREATE_POST';
 
 export const FETCH_POST = 'FETCH_POST';
 
+export const DELETE_POST = 'DELETE_POST';
+
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 // just for the sake of testing, we don't need to register anything, as long as
 // we use a unique string
@@ -32,11 +34,19 @@ export function createPost(props) {
 
 // action creator to fetch a specific post
 export function fetchPost(id) {
-    // pass props as the second argument so inputs content follow with the post request
     const request = axios.get(`${ROOT_URL}/posts/${id}?key=${API_KEY}`);
 
     return {
         type: FETCH_POST,
+        payload: request
+    }
+}
+
+export function deletePost(id) {
+    const request = axios.delete(`${ROOT_URL}/posts/${id}?key=${API_KEY}`);
+
+    return {
+        type: DELETE_POST,
         payload: request
     }
 }
