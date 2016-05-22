@@ -5,3 +5,14 @@
   flex-direction: column;
   justify-content: center;
 }
+
+// add some color feedback with the field is not valid
+input,
+textarea {
+  &.form-error {
+    border-color: $error-color;
+    & ~ .help-text {
+      color: $error-color;
+    }
+  }
+}
