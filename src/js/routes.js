@@ -13,7 +13,7 @@ export default (
     <Route path="posts" title="This is the list title" component={PostIndex} />
     <Route path="posts/new" component={PostsNew} />
     <Route path="posts/:id" component={PostShow} />
-    <Route path="/*" component={NoComp} />
+    <Route path="/*" component={PostIndex} />
   </Route>
 );
 

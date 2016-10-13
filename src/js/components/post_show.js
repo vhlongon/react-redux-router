@@ -19,7 +19,7 @@ class PostShow extends React.Component {
 
   onDeleteClick = () => {
     this.props.deletePost(this.props.params.id)
-      .then(()=>{
+      .then(() => {
         this.context.router.push('/');
       });
   }
@@ -34,9 +34,11 @@ class PostShow extends React.Component {
       <div className="post">
         <Link className="button" to="/">Back to Index</Link>
         <button className="alert button" onClick={this.onDeleteClick}>Delete Post</button>
-        <h3>{title}</h3>
-        <h6>Categories: {categories}</h6>
-        <p>{content}</p>
+        <article className="post-body">
+          <h3>{title}</h3>
+          <h6>Categories: {categories}</h6>
+          <p>{content}</p>
+        </article>
       </div>
     );
   }

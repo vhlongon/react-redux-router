@@ -22,8 +22,8 @@ class PostIndex extends Component {
       return (
         <Link to={`/posts/${post.id}`} key={post.id}>
           <li className="list-group-item">
-          <strong className="list-group-item__title text-right">{post.title}</strong>
-          <span className="list-group-item__category text-left"> {post.categories}</span>
+          <span className="list-group-item__title text-right">Title: <b>{post.title} </b></span>
+          <span className="list-group-item__category text-left">Categories: <b>{post.categories} </b></span>
           </li>
         </Link>
       );

@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -f dist/{css/*,js/*,images/*}",
     "postinstall": "webpack-dev-server",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
   },
   "keywords": [
     "React",
