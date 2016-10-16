@@ -20,8 +20,7 @@ class PostsNew extends Component {
   onSubmit = (props) => {
     // because we are using redux-promise the call for your 'createPost' action creator returns a promise,
     //thus .then(()=>{})
-    this.props.createPost(props)
-      .then(() => {
+    this.props.createPost(props, () => {
         //blog post has been created, navigate the user to the index
         // we navigate by calling this.context.router.push with the new path to navigate to
         this.context.router.push('/');
@@ -85,6 +84,8 @@ class PostsNew extends Component {
 
         <button type="submit">Save</button>
         <Link to="/" className="alert button">Cancel</Link>
+          <div>{this.props.newPostError ? 'Something went wrong: ' + this.props.newPostError : ''}</div>
+
       </form>
     );
   }
@@ -111,13 +112,17 @@ function validate(values) {
 
 //what the means is that we can use redux-form to connect to redux an create a container component
 
+function mapStateToProps(state) {
+  return { newPostError: state.createPost.newPostError };
+}
+
 // here we tell redux-form about the configuration of our form, i.e.
 // which fields it contains and what they are called and wire it to redux:
 export default reduxForm({
   form: 'PostsNewForm',
   fields: ['title', 'categories', 'content'],
   validate //we connect redux-form validate helper to our local function
-}, null, {createPost})(PostsNew);
+}, mapStateToProps, {createPost})(PostsNew);
 
 // when user types something in...record it on application state like so:
 // state === {

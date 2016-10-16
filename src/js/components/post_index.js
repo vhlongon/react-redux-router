@@ -38,7 +38,7 @@ class PostIndex extends Component {
         </div>
         <h3>Posts</h3>
         <ul className="list-group">
-          {this.renderPosts()}
+          {!this.props.error ? this.renderPosts() : this.props.error}
         </ul>
       </div>
     );
@@ -59,11 +59,11 @@ class PostIndex extends Component {
 
 // or instead we can use destructuring with ES6 to shorten even more like so:
 
-function MapStateToProps(state) {
-  return { posts: state.posts.all };
+function mapStateToProps(state) {
+  return { posts: state.posts.all, error: state.posts.error };
 }
 
 //UPDATE no more export default connect(null, {fetchPosts})(PostIndex),
 // since now we have indded a piece of redux state to map to your component props, thus:
 
-export default connect(MapStateToProps, {fetchPosts})(PostIndex);
+export default connect(mapStateToProps, {fetchPosts})(PostIndex);

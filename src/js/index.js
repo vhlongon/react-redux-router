@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 // redux specific stuff to create a provider and store
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 
 //without router - import the component
@@ -28,7 +29,7 @@ import css from '../scss/styles.scss';
 
 //create middleware
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, promise)(createStore);
 
 // Renader the app by wrapping the component in a provider
 ReactDOM.render(

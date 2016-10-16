@@ -18,16 +18,19 @@ class PostShow extends React.Component {
   }
 
   onDeleteClick = () => {
-    this.props.deletePost(this.props.params.id)
-      .then(() => {
-        this.context.router.push('/');
-      });
+    this.props.deletePost(this.props.params.id, () => {
+      this.context.router.push('/');
+    });
   }
 
   render = () => {
-    if(!this.props.post) {
+    if(this.props.error) {
+      return <div>{this.props.error}</div>;
+    }
+    else if(!this.props.post) {
       return <div>loading...</div>;
     }
+
     const {title, categories, content} = this.props.post;
 
     return (
@@ -44,8 +47,8 @@ class PostShow extends React.Component {
   }
 }
 
-function MapStateToProps(state) {
-  return { post: state.posts.post };
+function mapStateToProps(state) {
+  return { post: state.post.post, error: state.post.error};
 }
 
-export default connect(MapStateToProps, {fetchPost, deletePost})(PostShow);
+export default connect(mapStateToProps, {fetchPost, deletePost})(PostShow);
