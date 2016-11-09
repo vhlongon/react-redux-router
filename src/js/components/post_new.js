@@ -20,7 +20,7 @@ class PostsNew extends Component {
   onSubmit = (props) => {
     // because we are using redux-promise the call for your 'createPost' action creator returns a promise,
     //thus .then(()=>{})
-    this.props.createPost(props, () => {
+    this.props.createPost('', props, () => {
         //blog post has been created, navigate the user to the index
         // we navigate by calling this.context.router.push with the new path to navigate to
         this.context.router.push('/');

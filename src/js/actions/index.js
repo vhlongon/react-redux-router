@@ -11,11 +11,11 @@ export const FETCH_POST = generateActions('FETCH_POST');
 export const DELETE_POST = generateActions('DELETE_POST');
 
 // Generate object containing all actions states consts
-function generateActions(type) {
+export function generateActions(type) {
     return {
-        [type + '_REQUEST']: type + '_REQUEST',
-        [type + '_SUCCESS']: type + '_SUCCESS',
-        [type + '_FAILURE']: type + '_FAILURE'
+        REQUEST: type + '_REQUEST',
+        SUCCESS: type + '_SUCCESS',
+        FAILURE: type + '_FAILURE'
     };
 }
 
@@ -33,8 +33,8 @@ export const deletePost = generateActionCreator('delete', DELETE_POST);
 
 // Generate our actions creators
 function generateActionCreator(requestType, actionType, id, onSuccess = () => {}) {
-    return function actionCreator(par, onSuccess) {
-        const url = `${ROOT_URL}/posts/${typeof par === 'string' ? par : ''}?key=${API_KEY}`;
+    return function actionCreator(id = '', par = {}, onSuccess) {
+        const url = `${ROOT_URL}/posts/${id}?key=${API_KEY}`;
         const request = axios[requestType](url, par);
         const action = Object.keys(actionType).map((k) => actionType[k]);
         return dispatch => {

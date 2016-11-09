@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for js/actions/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">js/actions</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.17% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.29% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">54.55% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/22</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from 'axios';
+&nbsp;
+const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
+// just for the sake of testing, we don't need to register anything, as long as
+// we use a unique string
+const API_KEY = 'vhlongon';
+&nbsp;
+export const FETCH_POSTS = generateActions('FETCH_POSTS');
+export const CREATE_POST = generateActions('CREATE_POST');
+export const FETCH_POST = generateActions('FETCH_POST');
+export const DELETE_POST = generateActions('DELETE_POST');
+&nbsp;
+// Generate object containing all actions states consts
+export function generateActions(type) {
+    return {
+        REQUEST: type + '_REQUEST',
+        SUCCESS: type + '_SUCCESS',
+        FAILURE: type + '_FAILURE'
+    };
+}
+&nbsp;
+// action creator to fetch all posts
+export const fetchPosts = generateActionCreator('get', FETCH_POSTS);
+&nbsp;
+// action creator to create a new post
+export const createPost = generateActionCreator('post', CREATE_POST);
+&nbsp;
+// action creator to fetch a specific post
+export const fetchPost = generateActionCreator('get', FETCH_POST);
+&nbsp;
+// action creator to delete a specific post
+export const deletePost = generateActionCreator('delete', DELETE_POST);
+&nbsp;
+// Generate our actions creators
+function generateActionCreator(requestType, actionType, id, onSuccess = <span class="fstat-no" title="function not covered" >()</span> =&gt; {}) {
+    return function <span class="fstat-no" title="function not covered" >actionCreator(</span>id = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span> par = <span class="branch-0 cbranch-no" title="branch not covered" >{},</span> onSuccess) {
+        const url = <span class="cstat-no" title="statement not covered" >`${ROOT_URL}/posts/${id}?key=${API_KEY}`;</span>
+        const request = <span class="cstat-no" title="statement not covered" >axios[requestType](url, par);</span>
+        const action = <span class="cstat-no" title="statement not covered" >Object.keys(actionType).map(<span class="fstat-no" title="function not covered" >(k</span>) =&gt; <span class="cstat-no" title="statement not covered" >actionType[k])</span>;</span>
+<span class="cstat-no" title="statement not covered" >        return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            dispatch({type: action[0]});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            request.then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                dispatch({type: action[1], payload: response});</span>
+<span class="cstat-no" title="statement not covered" >                if(onSuccess &amp;&amp; typeof onSuccess === "function") {</span>
+<span class="cstat-no" title="statement not covered" >                    onSuccess();</span>
+                }
+            }).catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; {
+<span class="cstat-no" title="statement not covered" >                dispatch({type: action[2], error});</span>
+            });
+        };
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 09 2016 20:20:01 GMT+0100 (W. Europe Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

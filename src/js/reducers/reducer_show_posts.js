@@ -12,18 +12,18 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action){
   switch (action.type) {
 
-    case FETCH_POSTS.FETCH_POSTS_REQUEST:
+    case FETCH_POSTS.REQUEST:
       console.log('fetching posts');
       return state;
       break;
 
-    case FETCH_POSTS.FETCH_POSTS_SUCCESS:
+    case FETCH_POSTS.SUCCESS:
     console.log('success fetching posts');
       // since we need the state in another format we create a new structure using spread operator
       return {...state, all: action.payload.data };
       break;
 
-    case FETCH_POSTS.FETCH_POSTS_FAILURE:
+    case FETCH_POSTS.FAILURE:
     console.log('failure fetching posts');
       // since we need the state in another format we create a new structure using spread operator
       return {...state, error: action.error.statusText };

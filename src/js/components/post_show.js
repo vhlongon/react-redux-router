@@ -18,7 +18,7 @@ class PostShow extends React.Component {
   }
 
   onDeleteClick = () => {
-    this.props.deletePost(this.props.params.id, () => {
+    this.props.deletePost(this.props.params.id, null, () => {
       this.context.router.push('/');
     });
   }
