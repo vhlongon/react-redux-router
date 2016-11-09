@@ -38,13 +38,18 @@ function generateActionCreator(requestType, actionType, id, onSuccess = () => {}
         const request = axios[requestType](url, par);
         const action = Object.keys(actionType).map((k) => actionType[k]);
         return dispatch => {
+            // Always dispatch .REQUEST
             dispatch({type: action[0]});
 
+            // dispatch .SUCCESS if the promise resolves
+            // return response on payload property
             request.then(response => {
                 dispatch({type: action[1], payload: response});
                 if(onSuccess && typeof onSuccess === "function") {
                     onSuccess();
                 }
+            // dispatch .FAILURE if the promise won't resolves,
+            // return the error object on response
             }).catch(error => {
                 dispatch({type: action[2], error});
             });

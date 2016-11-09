@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {fetchPost, deletePost} from '../actions/index';
 import {Link} from 'react-router';
+import { browserHistory } from 'react-router';
 
 class PostShow extends React.Component {
 
@@ -9,9 +10,9 @@ class PostShow extends React.Component {
     super(props);
   }
 
-  static contextTypes = {
-    router: PropTypes.object
-  };
+  // static contextTypes = {
+  //   router: PropTypes.object
+  // };
 
   componentWillMount = () => {
     this.props.fetchPost(this.props.params.id);
@@ -19,7 +20,7 @@ class PostShow extends React.Component {
 
   onDeleteClick = () => {
     this.props.deletePost(this.props.params.id, null, () => {
-      this.context.router.push('/');
+      browserHistory.push('/');
     });
   }
 

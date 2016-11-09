@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
 import {Link} from 'react-router';
+import { browserHistory } from 'react-router';
 
 //import the action creator to pass to handleSubmit helper from redux-form
 import {createPost} from '../actions/index';
@@ -13,9 +14,9 @@ class PostsNew extends Component {
 
   // Only use context when working whe router,
   // we use it here to create a reference to the router (from the parent component) on our component
-  static contextTypes = {
-    router: PropTypes.object
-  };
+  // static contextTypes = {
+  //   router: PropTypes.object
+  // };
 
   onSubmit = (props) => {
     // because we are using redux-promise the call for your 'createPost' action creator returns a promise,
@@ -23,7 +24,11 @@ class PostsNew extends Component {
     this.props.createPost('', props, () => {
         //blog post has been created, navigate the user to the index
         // we navigate by calling this.context.router.push with the new path to navigate to
-        this.context.router.push('/');
+        // this.context.router.push('/');
+
+        // here we use browserHistory to navigate back to index instead of using context
+        // as above in statis contextTypes 
+        browserHistory.push('/');
       });
   }
 
