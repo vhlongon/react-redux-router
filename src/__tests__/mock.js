@@ -1,13 +1,23 @@
 const INITIAL_STATE_POST = {
-  // since it is the initial state for the single post page we can only pass it null
   post: null,
   error: null
 };
 
 const INITIAL_STATE_POSTS = {
-  // since it is the initial state for the single post page we can only pass it null
   all: [],
   error: null
+};
+
+const INITIAL_STATE_CREATE_POST = {
+  newPostError: null,
+  postsCreated: 0,
+  newPost: null
+};
+
+const INITIAL_STATE_DELETE_POST = {
+  deletePostError: null,
+  postsDeleted: 0,
+  postDeleted: null
 };
 
 const SINGLE_POST = {
@@ -38,7 +48,7 @@ const ERROR = {
 };
 
 test('Should return mock object', () => {
-  expect({INITIAL_STATE_POST, INITIAL_STATE_POSTS, SINGLE_POST, ERROR, POSTS}).toBeDefined();
+  expect({INITIAL_STATE_POST, INITIAL_STATE_POSTS, INITIAL_STATE_CREATE_POST, INITIAL_STATE_DELETE_POST, SINGLE_POST, ERROR, POSTS}).toBeDefined();
 });
 
-export {INITIAL_STATE_POST, INITIAL_STATE_POSTS, SINGLE_POST, ERROR, POSTS};
+export {INITIAL_STATE_POST, INITIAL_STATE_POSTS, INITIAL_STATE_CREATE_POST, INITIAL_STATE_DELETE_POST, SINGLE_POST, ERROR, POSTS};
